@@ -1,13 +1,13 @@
 window.onload = async () => {
-  const allIdUrl = "https://dummyjson.com/products?limit=0&select=id";
   const productsInOnePage = 5; // Number of products to display on each page
 
   try {
-    const ids = await getData(allIdUrl); // Fetch all product IDs
+    createSelectMenuContainer()
+
     createPaginationContainer(); // Initialize the container for pagination
     // Create pagination based on the number of pages
     createPageSelector(
-      calculateNumberOfPages(ids, productsInOnePage),
+      await calculateNumberOfPages(productsInOnePage),
       productsInOnePage
     );
     createProductListContainer(); // Initialize the container for product list

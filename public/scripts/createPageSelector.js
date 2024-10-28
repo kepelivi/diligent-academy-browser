@@ -4,7 +4,7 @@ function createPaginationContainer() {
   document.getElementById("main").appendChild(paginationContainer);
 }
 
-function createPageSelector(numberOfPages, productsInOnePage) {
+function createPageSelector(numberOfPages,productsInOnePage) {
   const container = document.querySelector("#paginationContainer");
   container.innerHTML = "";
   for (let i = 1; i <= numberOfPages; i++) {
@@ -17,13 +17,21 @@ function createPageSelector(numberOfPages, productsInOnePage) {
   document.getElementById("main").appendChild(container);
 }
 
-function calculateNumberOfPages(productIds, numberOfProductsInOnePage) {
-  const numberOfProducts = productIds.length;
-  let pages;
-  if (numberOfProducts % numberOfProductsInOnePage !== 0) {
-    pages = Math.floor(numberOfProducts / numberOfProductsInOnePage) + 1;
-  } else {
-    pages = numberOfProducts / numberOfProductsInOnePage;
+async function calculateNumberOfPages(
+  numberOfProductsInOnePage,
+  url = "https://dummyjson.com/products?limit=0&select=id"
+) {
+  try {
+    const products = await getData(url);
+    const numberOfProducts = products.length;
+    let pages;
+    if (numberOfProducts % numberOfProductsInOnePage !== 0) {
+      pages = Math.floor(numberOfProducts / numberOfProductsInOnePage) + 1;
+    } else {
+      pages = numberOfProducts / numberOfProductsInOnePage;
+    }
+    return pages;
+  } catch (error) {
+    console.error(error);
   }
-  return pages;
 }
