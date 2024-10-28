@@ -1,24 +1,39 @@
-function createSelectMenuContainer(){
+function createSelectMenuContainer() {
   const selectMenuContainer = document.createElement("div");
   selectMenuContainer.id = "selectMenuContainer";
   document.getElementById("main").appendChild(selectMenuContainer);
+  fillSelectMenu();
 }
 
-function createSelectMenu() {
-  const div = document.createElement("div");
-  const select = document.createElement("select");
-  const defaultCategory = document.createElement("option");
-  defaultCategory.innerHTML = "Select category";
-  defaultCategory.value = "";
-  select.appendChild(defaultCategory);
+async function fillSelectMenu() {
+  const allProductsCategoryUrl = "https://dummyjson.com/products/categories";
+  const allCategories = await getData(allProductsCategoryUrl);
+  console.log(allCategories);
 
-  categories.map((element) => {
+  const container = document.querySelector("#selectMenuContainer");
+  const select = document.createElement("select");
+  const defCategory = document.createElement("option");
+  defCategory.innerHTML = "Select category";
+  defCategory.value = "";
+  defCategory.addEventListener("change", (e) => categorySelect(e.target.value));
+  select.appendChild(defCategory);
+
+  allCategories.map((category) => {
     const option = document.createElement("option");
-    option.innerHTML = element;
-    option.value = element;
+    option.innerHTML = category.name;
+    option.value = category.slug;
     select.appendChild(option);
   });
+  select.addEventListener("change", (e) => categorySelect(e.target.value));
 
-  div.appendChild(select);
-  document.getElementById("main").appendChild(div);
+  container.appendChild(select);
+}
+
+function categorySelect(category) {
+  if (category === "") {
+    url = urlForAllProducts;
+  } else {
+    url = urlForCategory + category;
+  }
+  displayProducts();
 }

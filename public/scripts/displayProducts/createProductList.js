@@ -4,9 +4,10 @@ function createProductListContainer() {
   document.getElementById("main").appendChild(productListContainer);
 }
 
-async function fillProductList(productsInOnePage, page = 0) {
+async function fillProductList(page = 0, param = "") {
   try {
-    const products = await getData(getProductUrl(productsInOnePage, page));
+    const url = getProductUrl(page, param);
+    const { products } = await getData(url);
     const productListContainer = document.querySelector(
       "#productListContainer"
     );
@@ -20,9 +21,14 @@ async function fillProductList(productsInOnePage, page = 0) {
   }
 }
 
-function getProductUrl(numberOfProductsInOnePage, page) {
-  const skip = numberOfProductsInOnePage * (page - 1);
-  return `https://dummyjson.com/products?limit=${numberOfProductsInOnePage}&skip=${skip}&select=id,images,title,description,price,rating,tags`;
+function getProductUrl(page, param) {
+  const skip = productsInOnePage * (page - 1);
+  const select = "id,images,title,description,price,rating,tags";
+
+  return (
+    url +
+    `?limit=${productsInOnePage}&skip=${skip}&select=${select}&q=${param}`
+  );
 }
 
 function createProduct(product) {

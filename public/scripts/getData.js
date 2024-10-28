@@ -5,9 +5,7 @@ async function getData(url) {
       throw new Error(`Response status: ${response.status}`);
     }
     const data = await response.json();
-    const products = data.products;
-    console.log(products);
-    return products;
+    return data;
   } catch (error) {
     console.error(error.message);
   }
