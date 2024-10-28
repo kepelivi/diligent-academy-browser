@@ -5,6 +5,8 @@ async function getData(url) {
       throw new Error(`Response status: ${response.status}`);
     }
     const data = await response.json();
+    
+    //! TODO remove the console.log
     console.log(data);
     
     return data;

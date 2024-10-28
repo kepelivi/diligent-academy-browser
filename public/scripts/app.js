@@ -5,10 +5,9 @@ const urlForAllProducts = "https://dummyjson.com/products";
 let url = urlForAllProducts;
 
 window.onload = () => {
-  createSelectMenuContainer();
-  createSearchBarContainer();
-
-  createPaginationContainer(); // Initialize the container for pagination
-  createProductListContainer(); // Initialize the container for product list
-  displayProducts();
+  createSelectMenuContainer(); // Initialize the select menu container
+  createSearchBarContainer(); // Initialize the search bar container
+  createPaginationContainer(); // Initialize pagination container
+  createProductListContainer(); // Initialize product list container
+  displayProducts(); // Display products on the page
 };

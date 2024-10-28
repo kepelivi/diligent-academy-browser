@@ -1,9 +1,11 @@
+// Creates and initializes the pagination container element
 function createPaginationContainer() {
   const paginationContainer = document.createElement("div");
   paginationContainer.id = "paginationContainer";
   document.getElementById("main").appendChild(paginationContainer);
 }
 
+// Dynamically generates page selectors for pagination based on the number of pages
 function createPageSelector(numberOfPages) {
   const container = document.querySelector("#paginationContainer");
   container.innerHTML = "";
@@ -18,10 +20,11 @@ function createPageSelector(numberOfPages) {
   document.getElementById("main").appendChild(container);
 }
 
+// Calculates the total number of pages based on the total number of products and items per page
 async function calculateNumberOfPages() {
   const localUrl = url + `?limit=0&select=id`;
   try {
-    const {total} = await getData(localUrl);
+    const { total } = await getData(localUrl);
     const numberOfProducts = total;
     let pages;
     if (numberOfProducts % productsInOnePage !== 0) {
