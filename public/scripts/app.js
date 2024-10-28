@@ -6,6 +6,8 @@ let url = urlForAllProducts;
 
 window.onload = () => {
   createSelectMenuContainer();
+  createSearchBarContainer();
+
   createPaginationContainer(); // Initialize the container for pagination
   createProductListContainer(); // Initialize the container for product list
   displayProducts();

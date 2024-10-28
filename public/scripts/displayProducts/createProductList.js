@@ -4,9 +4,9 @@ function createProductListContainer() {
   document.getElementById("main").appendChild(productListContainer);
 }
 
-async function fillProductList(page = 0, param = "") {
+async function fillProductList(page = 0) {
   try {
-    const url = getProductUrl(page, param);
+    const url = getProductUrl(page);
     const { products } = await getData(url);
     const productListContainer = document.querySelector(
       "#productListContainer"
@@ -21,13 +21,15 @@ async function fillProductList(page = 0, param = "") {
   }
 }
 
-function getProductUrl(page, param) {
+function getProductUrl(page) {
   const skip = productsInOnePage * (page - 1);
   const select = "id,images,title,description,price,rating,tags";
 
+  if (url.includes("?q=")) return url 
+
   return (
     url +
-    `?limit=${productsInOnePage}&skip=${skip}&select=${select}&q=${param}`
+    `?limit=${productsInOnePage}&skip=${skip}&select=${select}`
   );
 }
 

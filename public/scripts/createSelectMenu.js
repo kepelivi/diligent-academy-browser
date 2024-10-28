@@ -8,7 +8,6 @@ function createSelectMenuContainer() {
 async function fillSelectMenu() {
   const allProductsCategoryUrl = "https://dummyjson.com/products/categories";
   const allCategories = await getData(allProductsCategoryUrl);
-  console.log(allCategories);
 
   const container = document.querySelector("#selectMenuContainer");
   const select = document.createElement("select");
