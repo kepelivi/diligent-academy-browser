@@ -6,7 +6,6 @@ function createProductDetailsContainer() {
 
 async function displayProductDetails() {
     const product = await getProduct();
-    console.log(`current product: ${product}`)
     if (!product) {
         const error = errorDisplay("Error occured while displaying this product. Please refresh or go back to the main page.")
         document.getElementById("main").appendChild(error);
@@ -29,7 +28,6 @@ async function getProduct() {
     try {
         const id = getProductId();
         const url = `https://dummyjson.com/products/${id}`;
-        console.log(url);
         const product = await getData(url);
         return product;
     } catch (err) {
