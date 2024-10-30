@@ -65,6 +65,8 @@ function createProductWithDetails(product) {
     const brand = document.createElement("p");
     brand.innerHTML = `Made by ${product.brand}`;
 
+    const reviews = displayReviews(product);
+
     div.appendChild(img);
     div.appendChild(desc);
     div.appendChild(price);
@@ -72,6 +74,7 @@ function createProductWithDetails(product) {
     div.appendChild(stock);
     div.appendChild(tags);
     div.appendChild(brand);
+    div.appendChild(reviews);
     
     return div;
 }
