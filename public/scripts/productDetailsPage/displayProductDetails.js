@@ -67,6 +67,7 @@ function createProductWithDetails(product) {
 
     const reviews = displayReviews(product);
 
+    div.appendChild(title);
     div.appendChild(img);
     div.appendChild(desc);
     div.appendChild(price);
